@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tech Stack Recommender</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>AI Tech Stack Recommender</h1>
+
+        <p>
+            Enter your skills and get suitable career recommendations.
+        </p>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="skill1"
+                placeholder="Enter first skill"
+                required
+            >
+
+            <input
+                type="text"
+                name="skill2"
+                placeholder="Enter second skill"
+                required
+            >
+
+            <input
+                type="text"
+                name="skill3"
+                placeholder="Enter third skill"
+                required
+            >
+
+            <button type="submit">
+                Get Recommendations
+            </button>
+
+        </form>
+
+
+        {% if recommendations %}
+
+            <div class="results">
+
+                <h2>Recommended Career Paths</h2>
+
+                {% for item in recommendations %}
+
+                    <div class="job-card">
+
+                        <h3>{{ item.job }}</h3>
+
+                        <p>
+                            Match Score: {{ item.score }}%
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
